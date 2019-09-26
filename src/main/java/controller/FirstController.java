@@ -16,7 +16,8 @@ import view.FXMLView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class FirstController implements Initializable {
 
@@ -38,27 +39,21 @@ public class FirstController implements Initializable {
         stageManager = StageManager.INSTANCE;
         listPreferences = ListPreferences.INSTANCE;
         retrievedList = listPreferences.getList();
-        assert retrievedList != null;
-        observableList = FXCollections.observableArrayList(Objects.requireNonNull(retrievedList.getFiles()));
-        fileListView.setItems(observableList);
-        fileListView.setCellFactory(param -> new ListCell<EFile>() {
-            @Override
-            protected void updateItem(EFile item, boolean empty) {
-                super.updateItem(item, empty);
+        if (retrievedList != null) {
+            observableList = FXCollections.observableArrayList(Objects.requireNonNull(retrievedList.getFiles()));
+            fileListView.setItems(observableList);
+            fileListView.setCellFactory(param -> new ListCell<EFile>() {
+                @Override
+                protected void updateItem(EFile item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (empty || item == null || item.getFileName() == null) {
-                    setText(null);
-                } else {
-                    setText(item.getFileName());
+                    if (empty || item == null || item.getFileName() == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getFileName());
+                    }
                 }
-            }
-        });
-    }
-
-    private void saveList() {
-        observableList.addAll(new EFile("fifth.file", "/path/", new Date(System.currentTimeMillis())));
-        List<EFile> files = new ArrayList<>(observableList);
-        retrievedList.setFiles(files);
-        listPreferences.setList(retrievedList);
+            });
+        }
     }
 }
