@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import util.ListPreferences;
 import util.StageManager;
 import util.UserPreferences;
 import view.FXMLView;
@@ -24,7 +25,8 @@ public class SecondController implements Initializable {
     @FXML
     private TextField userInput;
     private StageManager stageManager;
-    private UserPreferences preferences;
+    private UserPreferences userPreferences;
+    private ListPreferences listPreferences;
 
     public void goToPast(ActionEvent actionEvent) throws IOException {
         stageManager.switchScene(FXMLView.FIRST);
@@ -33,14 +35,15 @@ public class SecondController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         stageManager = StageManager.INSTANCE;
-        preferences = UserPreferences.INSTANCE;
+        userPreferences = UserPreferences.INSTANCE;
+        listPreferences = ListPreferences.INSTANCE;
     }
 
     public void saveInfo(ActionEvent actionEvent) {
-        preferences.setUserID(userInput.getText());
+        userPreferences.setUserID(userInput.getText());
     }
 
     public void deleteInfo(ActionEvent actionEvent) {
-        preferences.removeUserID();
+        userPreferences.removeUserID();
     }
 }
