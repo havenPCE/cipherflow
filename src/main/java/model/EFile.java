@@ -12,8 +12,11 @@ public class EFile implements Serializable {
     public EFile() {
     }
 
-    public EFile(String fileName, String filePath, Date lastEncrypted) {
-        this.fileName = fileName;
+    public EFile(String filePath, Date lastEncrypted) {
+        int idx = filePath.lastIndexOf("/") + 1;
+        if (idx < filePath.length()) {
+            this.fileName = filePath.substring(idx);
+        } else this.fileName = "";
         this.filePath = filePath;
         this.lastEncrypted = lastEncrypted;
     }
