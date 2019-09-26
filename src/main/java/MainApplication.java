@@ -5,14 +5,12 @@ import util.ListPreferences;
 import util.StageManager;
 import util.UserPreferences;
 import view.FXMLView;
-import util.ListPreferences;
 
 import java.io.IOException;
 
 public class MainApplication extends Application {
 
     private StageManager stageManager;
-    private ListPreferences listPreferences;
     private UserPreferences userPreferences;
 
     public static void main(String[] args) {
@@ -36,7 +34,7 @@ public class MainApplication extends Application {
     public void init() {
         stageManager = StageManager.INSTANCE;
         userPreferences = UserPreferences.INSTANCE;
-        listPreferences = ListPreferences.INSTANCE;
+        ListPreferences listPreferences = ListPreferences.INSTANCE;
         listPreferences.setListPreferences();
         userPreferences.setUserPreferences();
     }
