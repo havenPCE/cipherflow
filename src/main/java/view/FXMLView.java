@@ -6,23 +6,16 @@ package view;
  * */
 
 public enum FXMLView {
-    FIRST {
-        public String getTitle() {
-            return "Welcome to the app!";
+
+    LOGIN {
+        @Override
+        public String getTitle(){
+            return "Welcome to the login screen";
         }
 
+        @Override
         public String getFxmlFile() {
-            return "fxml/first.fxml";
-        }
-    },
-
-    SECOND {
-        public String getTitle() {
-            return "Second Screen";
-        }
-
-        public String getFxmlFile() {
-            return "fxml/second.fxml";
+            return "fxml/Login.fxml";
         }
     };
 

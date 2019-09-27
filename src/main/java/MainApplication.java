@@ -25,9 +25,7 @@ public class MainApplication extends Application {
     }
 
     private void showInitialScene() throws IOException {
-        if (userPreferences.getUserID() != null) {
-            stageManager.switchScene(FXMLView.FIRST);
-        } else stageManager.switchScene(FXMLView.SECOND);
+       stageManager.switchScene(FXMLView.LOGIN);
     }
 
     //Here is all the beans initialized

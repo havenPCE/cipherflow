@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import view.FXMLView;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public enum StageManager {
     private void prepareScene(FXMLView view) throws IOException {
         String fxmlFile = view.getFxmlFile();
         String title = view.getTitle();
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlFile)));
         primaryStage.setTitle(title);
         primaryStage.setScene(new Scene(root));
