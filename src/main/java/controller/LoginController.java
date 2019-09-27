@@ -16,6 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util.StageManager;
+import view.FXMLView;
+
 import javax.swing.JOptionPane;
 
 public class LoginController implements Initializable {
@@ -30,17 +33,15 @@ public class LoginController implements Initializable {
     
    @FXML
     private PasswordField password;
- 
+
+   private StageManager stageManager;
+
      @Override
-    
     public void initialize(URL url, ResourceBundle rb) {
-        
+        stageManager = StageManager.INSTANCE;
     }   
     public void open_registration(MouseEvent event) throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("RegistrationUI.fxml"));
-        
-        content_area.getChildren().removeAll();
-        content_area.getChildren().setAll(fxml);
+        stageManager.switchScene(FXMLView.REGISTRATION);
     }
     
     

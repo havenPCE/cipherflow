@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.ListPreferences;
 import util.StageManager;
 import util.UserPreferences;
@@ -19,6 +20,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         stageManager.setPrimaryStage(primaryStage);
         stageManager.setLoader(new FXMLLoader());
         showInitialScene();
