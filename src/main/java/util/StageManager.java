@@ -35,7 +35,6 @@ public enum StageManager {
     private void prepareScene(FXMLView view) throws IOException {
         String fxmlFile = view.getFxmlFile();
         String title = view.getTitle();
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlFile)));
         primaryStage.setTitle(title);
         primaryStage.setScene(new Scene(root));
