@@ -30,6 +30,8 @@ public class MainApplication extends Application {
        stageManager.switchScene(FXMLView.LOGIN);
     }
 
+
+
     //Here is all the beans initialized
     public void init() {
         stageManager = StageManager.INSTANCE;

@@ -31,6 +31,7 @@ public enum FXMLView {
         }
     };
 
+
     //returns the title to display on screen
     public abstract String getTitle();
 
