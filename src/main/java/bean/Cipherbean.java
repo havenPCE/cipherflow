@@ -18,14 +18,13 @@ public enum Cipherbean {
     IvParameterSpec ivParameterSpec;
     SecretKeySpec secretKeySpec;
     Cipher cipher;
-    String key;
-    String IV;
+    byte[] salt;
 
 
     //this method intializes the above variables
-    public void setParameters() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public void setParameters(String key, String IV, String Salt) throws NoSuchAlgorithmException, NoSuchPaddingException {
 
-
+        salt = Salt.getBytes();
         // Get Cipher Instance
         cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
@@ -121,7 +120,7 @@ public enum Cipherbean {
     }
 
     //this method is for password hashing
-    public String getSecurePassword(String passwordToHash, byte[] salt) {
+    public String getSecurePassword(String passwordToHash) {
         String newPassword = null;
         MessageDigest md;
         try {

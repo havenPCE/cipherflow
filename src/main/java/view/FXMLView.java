@@ -9,7 +9,7 @@ public enum FXMLView {
 
     LOGIN {
         @Override
-        public String getTitle(){
+        public String getTitle() {
             return "Welcome to the login screen";
         }
 
