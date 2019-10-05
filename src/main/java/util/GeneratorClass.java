@@ -38,11 +38,11 @@ public class GeneratorClass {
     }
 
     //this method generates salt
-    public static byte[] GenerateSalt() {
+    public static String GenerateSalt() {
         SecureRandom r3 = new SecureRandom();
         byte[] salt = new byte[16];
         r3.nextBytes(salt);
-        return (salt);
+        return (salt.toString());
     }
 
 }

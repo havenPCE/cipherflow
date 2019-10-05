@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import view.FXMLView;
 
 import java.io.IOException;
@@ -40,5 +39,6 @@ public enum StageManager {
         primaryStage.setScene(new Scene(root));
         primaryStage.sizeToScene();
         primaryStage.centerOnScreen();
+        primaryStage.setResizable(false);
     }
 }
