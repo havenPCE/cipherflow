@@ -1,9 +1,11 @@
 package util;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import view.FXMLView;
 
 import java.io.IOException;
@@ -17,13 +19,11 @@ public enum StageManager {
     INSTANCE;
     FXMLLoader loader;
     Stage primaryStage;
+    double xOffSet = 0;
+    double yOffSet = 0;
 
     public void setLoader(FXMLLoader loader) {
         this.loader = loader;
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
     }
 
     public void switchScene(FXMLView view) throws IOException {
@@ -31,14 +31,35 @@ public enum StageManager {
         primaryStage.show();
     }
 
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
     private void prepareScene(FXMLView view) throws IOException {
         String fxmlFile = view.getFxmlFile();
-        String title = view.getTitle();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlFile)));
-        primaryStage.setTitle(title);
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), root);
+        root.setOnMousePressed(event -> {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - xOffSet);
+            primaryStage.setY(event.getScreenY() - yOffSet);
+        });
+        fadeTransition.setFromValue(0.5);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.play();
         primaryStage.setScene(new Scene(root));
         primaryStage.sizeToScene();
         primaryStage.centerOnScreen();
-        primaryStage.setResizable(false);
+    }
+
+    public void minimize() {
+        primaryStage.setIconified(true);
     }
 }

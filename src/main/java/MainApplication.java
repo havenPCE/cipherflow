@@ -1,10 +1,11 @@
-import bean.Cipherbean;
+import bean.CipherBean;
 import bean.UserBean;
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.EFileList;
+import model.SavedFileList;
 import model.User;
 import service.UserService;
 import service.UserServiceImplimentation;
@@ -21,9 +22,10 @@ public class MainApplication extends Application {
 
     private StageManager stageManager;
     private UserPreferences userPreferences;
-    private ListPreferences listPreferences;
     private UserBean userBean;
-    private Cipherbean cipherbean;
+    private CipherBean cipherBean;
+    private ListPreferences listPreferences;
+    private UserService userService;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,52 +34,49 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setOnCloseRequest(Event::consume);
         stageManager.setPrimaryStage(primaryStage);
         stageManager.setLoader(new FXMLLoader());
         showInitialScene();
     }
 
-    private void showInitialScene() throws IOException, NoSuchAlgorithmException, NoSuchPaddingException {
+    private void showInitialScene() throws IOException {
         String savedUserId = userPreferences.getUserID();
         if (savedUserId == null) {
             stageManager.switchScene(FXMLView.LOGIN);
         } else {
-            UserService userService = new UserServiceImplimentation();
-            User user = userService.getUser(savedUserId);
-            if (user == null) {
-                userPreferences.removeUserID();
-            } else {
-                setUserInfo(user);
-                // stageManager.switchScene();
-            }
+            saveLocalData();
+            stageManager.switchScene(FXMLView.MAIN);
         }
     }
 
-
-    private void setUserInfo(User user) throws NoSuchPaddingException, NoSuchAlgorithmException {
+    private void saveLocalData() {
+        User user = userService.getUser(userPreferences.getUserID());
         userBean.setUserID(user.getUserId());
         userBean.setFirstName(user.getFirstName());
         userBean.setLastName(user.getLastName());
         userBean.setEmail(user.getEmail());
-        cipherbean.setParameters(user.getSecretKey(), user.getIvKey(), user.getSalt());
-        EFileList eFileList = listPreferences.getList();
-        if (eFileList == null) {
-            userBean.setFileList(new EFileList());
-        } else {
-            userBean.setFileList(eFileList);
+        try {
+            cipherBean.setParameters(user.getSecretKey(), user.getIvKey(), user.getSalt());
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            e.printStackTrace();
         }
+        listPreferences.setListPreferences(userBean.getUserID());
+        SavedFileList savedList = listPreferences.getList();
+        if (savedList == null) {
+            userBean.setFileList(new SavedFileList());
+        } else userBean.setFileList(savedList);
     }
 
 
-
-    //Here is all the beans initialized
     public void init() {
         stageManager = StageManager.INSTANCE;
         userPreferences = UserPreferences.INSTANCE;
-        ListPreferences listPreferences = ListPreferences.INSTANCE;
-        listPreferences.setListPreferences();
+        listPreferences = ListPreferences.INSTANCE;
         userPreferences.setUserPreferences();
         userBean = UserBean.INSTANCE;
-        cipherbean = Cipherbean.INSTANCE;
+        cipherBean = CipherBean.INSTANCE;
+        userService = new UserServiceImplimentation();
     }
 }
+

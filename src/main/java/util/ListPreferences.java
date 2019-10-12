@@ -1,6 +1,6 @@
 package util;
 
-import model.EFileList;
+import model.SavedFileList;
 
 import java.io.*;
 import java.util.prefs.Preferences;
@@ -9,12 +9,12 @@ public enum ListPreferences {
 
     INSTANCE;
 
-    final String key = "List";
+    String key;
     Preferences preferences;
 
-    public EFileList getList() {
+    public SavedFileList getList() {
         byte[] stored;
-        EFileList eFileList;
+        SavedFileList eFileList;
         try {
             stored = preferences.getByteArray(key, null);
             if (stored == null) {
@@ -22,8 +22,8 @@ public enum ListPreferences {
             } else {
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(stored));
                 Object object = objectInputStream.readObject();
-                if (object instanceof EFileList) {
-                    eFileList = (EFileList) object;
+                if (object instanceof SavedFileList) {
+                    eFileList = (SavedFileList) object;
                     return eFileList;
                 }
             }
@@ -33,7 +33,7 @@ public enum ListPreferences {
         return null;
     }
 
-    public void setList(EFileList eFileList) {
+    public void setList(SavedFileList eFileList) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
@@ -44,13 +44,27 @@ public enum ListPreferences {
         }
     }
 
-    public boolean removeList() {
-        byte[] stored = preferences.getByteArray(key, null);
+    public boolean removeList(String userId) {
+        byte[] stored = preferences.getByteArray(userId + "-List", null);
         if (stored != null) {
-            preferences.remove(key);
+            preferences.remove(userId + "-List");
             return true;
         }
         return false;
+    }
+
+    public boolean removeList() {
+        byte[] stored = preferences.getByteArray("List", null);
+        if (stored != null) {
+            preferences.remove("List");
+            return true;
+        }
+        return false;
+    }
+
+    public void setListPreferences(String userId) {
+        this.key = userId + "-List";
+        this.preferences = Preferences.userRoot().node(this.getClass().getName());
     }
 
     public void setListPreferences() {

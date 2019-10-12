@@ -1,20 +1,13 @@
 package controller;
 
-import bean.Cipherbean;
+import bean.CipherBean;
 import bean.UserBean;
-import com.jfoenix.controls.JFXCheckBox;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import model.EFileList;
+import javafx.scene.control.*;
+import model.SavedFileList;
 import model.User;
 import service.UserService;
 import service.UserServiceImplimentation;
@@ -24,129 +17,134 @@ import util.UserPreferences;
 import view.FXMLView;
 
 import javax.crypto.NoSuchPaddingException;
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoginController implements Initializable {
 
-
     @FXML
-    public AnchorPane content_area;
+    public Button closeButton;
     @FXML
-    public TextField username;
+    public Button minButton;
     @FXML
-    public  PasswordField password;
+    public Button createButton;
     @FXML
-    public JFXCheckBox rememberBox;
-
-    Alert alert = new Alert(Alert.AlertType.WARNING);
+    public TextField uidField;
+    @FXML
+    public PasswordField passField;
+    @FXML
+    public CheckBox rememberBox;
+    @FXML
+    public Button signInButton;
+    @FXML
+    public Label uidwarning;
+    @FXML
+    public Label passwarning;
+    @FXML
+    public Label loginwarning;
 
 
     private StageManager stageManager;
-    private Cipherbean cipherbean;
-    private UserBean userBean;
-    private User user;
     private UserService userService;
+    private User user;
+    private UserBean userBean;
+    private CipherBean cipherBean;
     private ListPreferences listPreferences;
     private UserPreferences userPreferences;
 
-    public void open_registration(MouseEvent event) throws IOException {
+    public void closeWindow(ActionEvent actionEvent) {
+        Platform.exit();
+    }
+
+    public void minimizeWindow(ActionEvent actionEvent) {
+        stageManager.minimize();
+    }
+
+    public void gotoRegister(ActionEvent actionEvent) throws IOException {
         stageManager.switchScene(FXMLView.REGISTRATION);
     }
 
-    @FXML
-    public void close_app(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    public void min(MouseEvent event) {
-        Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        s.setIconified(true);
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        stageManager = StageManager.INSTANCE;
-        userBean=UserBean.INSTANCE;
-        cipherbean=Cipherbean.INSTANCE;
-        listPreferences=ListPreferences.INSTANCE;
-        userPreferences=UserPreferences.INSTANCE;
-        userService=new UserServiceImplimentation();
-    }
-
-    public void Login(MouseEvent event) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException {
-        String Username = username.getText();
-        String Password = password.getText();
-        boolean remember=rememberBox.isSelected();
-        if(emptyValidation(Username,Password)){
-            if(authenticate(Username,Password)){
+    public void gotoMain(ActionEvent actionEvent) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException {
+        String userId = uidField.getText();
+        String password = passField.getText();
+        boolean remember = rememberBox.isSelected();
+        if (emptyValidation(userId, password)) {
+            if (authenticate(userId, password)) {
                 setUserInfo(remember);
-                stageManager.switchScene(FXMLView.REGISTRATION);
+                stageManager.switchScene(FXMLView.MAIN);
             }
-
         }
-
     }
-    public boolean emptyValidation(String username,String password)
-    {
-        if (username.equals("") || password.equals("") ) {
-            JOptionPane.showMessageDialog(null, "Above fields can't be left blank ");
+
+    private void setUserInfo(boolean isChecked) {
+        user = userService.getUser(uidField.getText());
+        userBean.setUserID(user.getUserId());
+        userBean.setFirstName(user.getFirstName());
+        userBean.setLastName(user.getLastName());
+        userBean.setEmail(user.getEmail());
+        try {
+            cipherBean.setParameters(user.getSecretKey(), user.getIvKey(), user.getSalt());
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+        if (isChecked) {
+            userPreferences.setUserID(userBean.getUserID());
+        }
+        listPreferences.setListPreferences(userBean.getUserID());
+        SavedFileList savedList = listPreferences.getList();
+        if (savedList == null) {
+            userBean.setFileList(new SavedFileList());
+        } else userBean.setFileList(savedList);
+    }
+
+    private boolean emptyValidation(String userId, String password) {
+        if (userId.isEmpty() | userId.equals("")) {
+            cleanUpWarning();
+            uidwarning.setText("User ID can't be empty");
+            return false;
+        }
+        if (password.isEmpty() | password.equals("")) {
+            cleanUpWarning();
+            passwarning.setText("Password can't be empty");
             return false;
         }
         return true;
     }
-    private boolean authenticate(String username,String password) throws NoSuchPaddingException, NoSuchAlgorithmException {
-       boolean result=false;
-        User u= userService.getUser(username) ;
-       if(u==null){
-           alert.setTitle("Login Details");
-           alert.setHeaderText(null);
-           alert.setContentText("Username is not registered!  Please sign up");
-           alert.showAndWait();
-       }
-       else{
-           cipherbean.setParameters(u.getSecretKey(),u.getIvKey(),u.getSalt());
-           if(cipherbean.getSecurePassword(password).equals(u.getPassword())){
-               user=u;
-               result=true;
-           }else {
-               alert.setTitle("Login Details");
-               alert.setHeaderText(null);
-               alert.setContentText("Password is incorrect");
-               alert.showAndWait();
-           }
-       }
-       return result;
-    }
-    private  void setUserInfo(boolean isChecked) throws NoSuchPaddingException, NoSuchAlgorithmException {
-      userBean.setUserID(user.getUserId());
-      userBean.setFirstName(user.getFirstName());
-      userBean.setLastName(user.getLastName());
-      userBean.setEmail(user.getEmail());
-      cipherbean.setParameters(user.getSecretKey(),user.getIvKey(),user.getSalt());
-        EFileList eFileList=listPreferences.getList();
-        if(eFileList==null) {
-            userBean.setFileList(new EFileList());
-        }else{
-            userBean.setFileList(eFileList);
+
+    private boolean authenticate(String uid, String password) throws NoSuchPaddingException, NoSuchAlgorithmException {
+        boolean result = false;
+        User u = userService.getUser(uid);
+        if (u == null) {
+            cleanUpWarning();
+            loginwarning.setText("UserID is not registered! Please Sign Up !");
+        } else {
+            cipherBean.setParameters(u.getSecretKey(), u.getIvKey(), u.getSalt());
+            if (cipherBean.getSecurePassword(password).equals(u.getPassword())) {
+                user = u;
+                result = true;
+            } else {
+                cleanUpWarning();
+                loginwarning.setText("Password is incorrect!");
+            }
         }
-        if(isChecked){
-            userPreferences.setUserID(user.getUserId());
-        }
+        return result;
     }
 
+    public void initialize(URL location, ResourceBundle resources) {
+        stageManager = StageManager.INSTANCE;
+        userBean = UserBean.INSTANCE;
+        cipherBean = CipherBean.INSTANCE;
+        listPreferences = ListPreferences.INSTANCE;
+        userPreferences = UserPreferences.INSTANCE;
+        userService = new UserServiceImplimentation();
+        user = new User();
+    }
+
+    private void cleanUpWarning() {
+        uidwarning.setText("");
+        passwarning.setText("");
+        loginwarning.setText("");
+    }
 }
-
-
-
-
-
-
-
-
-
