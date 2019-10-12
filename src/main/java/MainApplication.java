@@ -68,6 +68,8 @@ public class MainApplication extends Application {
         }
     }
 
+
+
     //Here is all the beans initialized
     public void init() {
         stageManager = StageManager.INSTANCE;

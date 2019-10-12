@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="content" minHeight="-Infinity" prefHeight="959.0" prefWidth="1363.0" style="-fx-border-color: #000000; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ListController">
+   <children>
+      <AnchorPane layoutY="-2.0" minHeight="-Infinity" prefHeight="960.0" prefWidth="423.0" style="-fx-background-color: #6e6767;">
+         <children>
+            <Pane layoutX="1.0" layoutY="-2.0" prefHeight="95.0" prefWidth="422.0" style="-fx-background-color: #6e6767;">
+               <children>
+                  <Label layoutX="52.0" layoutY="14.0" prefHeight="53.0" prefWidth="309.0" text="CipherFlow App" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Fax Demibold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton layoutX="142.0" layoutY="139.0" onMouseClicked="#open_home" prefHeight="53.0" prefWidth="123.0" text="Home" textFill="#ebe6e6">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="18.0" />
+               </font>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="112.0" layoutY="176.0" size="30" wrappingWidth="29.999998211860657" />
+            <JFXButton layoutX="97.0" layoutY="203.0" onMouseClicked="#open_LApp" prefHeight="53.0" prefWidth="213.0" text="       Learn App" textFill="#ebe6e6">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="18.0" />
+               </font>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="112.0" layoutY="241.0" size="30" text="" />
+            <JFXButton layoutX="101.0" layoutY="261.0" onMouseClicked="#open_aus" prefHeight="53.0" prefWidth="192.0" text="    About Us" textFill="#ebe6e6">
+               <font>
+                  <Font name="Lucida Sans Typewriter Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="111.0" layoutY="298.0" size="30" text="" />
+            <VBox layoutX="-1.0" layoutY="437.0" prefHeight="520.0" prefWidth="423.0" style="-fx-background-color: #6e6767;" styleClass="box">
+               <children>
+                  <Label prefHeight="62.0" prefWidth="422.0" text="TEAM INVOLVED" textFill="#ebe6e6">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox prefHeight="69.0" prefWidth="348.0">
+                     <children>
+                        <ImageView fitHeight="77.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/lock10.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="99.0" prefWidth="283.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="241.0" text="Gopesh Gosh" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="177.0" text="Database " textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="61.0" prefHeight="42.0" prefWidth="422.0">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/lock7.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="99.0" prefWidth="283.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="206.0" text="Khushboo" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="213.0" text="UI &amp; Controller" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="61.0" prefHeight="42.0" prefWidth="422.0">
+                     <children>
+                        <ImageView fitHeight="77.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/lock9.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="99.0" prefWidth="283.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="266.0" text="Sangeeta Sharma" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="142.0" text="Coading" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="138.0" prefHeight="42.0" prefWidth="422.0">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/lock8.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="99.0" prefWidth="283.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="235.0" text="Shyam Sahoo" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="162.0" text="Coading" textFill="#ebe6e6">
+                                 <font>
+                                    <Font name="Lucida Sans Unicode" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <JFXButton cancelButton="true" layoutX="101.0" layoutY="325.0" onMouseClicked="#back_to_login" prefHeight="53.0" prefWidth="224.0" text="Logout" textFill="#ebe6e6">
+               <font>
+                  <Font name="Lucida Sans Typewriter Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="LINK" layoutX="113.0" layoutY="362.0" size="30" text="" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="419.0" layoutY="1.0" prefHeight="954.0" prefWidth="942.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Pane layoutY="843.0" prefHeight="111.0" prefWidth="942.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <JFXButton layoutX="286.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="283.0" ripplerFill="BLACK" text="Term &amp; Condition" underline="true">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="30.0" />
+                     </font>
+                  </JFXButton>
+                  <FontAwesomeIconView glyphName="COPYRIGHT" layoutX="552.0" layoutY="68.0" size="35" text="" wrappingWidth="34.99999053776264" />
+                  <Label layoutX="587.0" layoutY="25.0" prefHeight="71.0" prefWidth="69.0" text="2019">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="-4.0" prefHeight="87.0" prefWidth="942.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label layoutX="45.0" layoutY="21.0" prefHeight="53.0" prefWidth="309.0" text="Dashboard" textFill="#6e6767">
+                     <font>
+                        <Font name="Lucida Fax Demibold" size="36.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#6e6767" glyphName="CLOSE" layoutX="871.0" layoutY="42.0" onMouseClicked="#close_app" size="30" text="" wrappingWidth="32.14286282658577" />
+                  <FontAwesomeIconView fill="#6e6767" glyphName="MINUS" layoutX="827.0" layoutY="45.0" onMouseClicked="#min" size="30" wrappingWidth="23.571428298950195" />
+               </children>
+            </Pane>
+            <AnchorPane fx:id="content_area" layoutY="85.0" prefHeight="755.0" prefWidth="942.0">
+               <children>
+                  <TableView fx:id="tableID" layoutX="14.0" layoutY="85.0" prefHeight="293.0" prefWidth="845.0">
+                    <columns>
+                      <TableColumn fx:id="Slno" prefWidth="100.0" text="Slno" />
+                      <TableColumn fx:id="Date" prefWidth="250.0" text="Date" />
+                        <TableColumn fx:id="FileName" prefWidth="200.0" text="FileName" />
+                        <TableColumn fx:id="Path" prefWidth="390.0" text="Path" />
+                    </columns>
+                  </TableView>
+                  <HBox layoutX="27.0" layoutY="474.0" prefHeight="71.0" prefWidth="525.0" style="-fx-background-color: #727272; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-color: #517cc0;">
+                     <children>
+                        <FontAwesomeIconView glyphName="FILE" glyphStyle="-fx-fill:#BEBFC1" size="30.0" wrappingWidth="35.0">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" top="19.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                        <TextField fx:id="filename" prefHeight="69.0" prefWidth="473.0" promptText="File Path" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font name="Lucida Sans Typewriter Regular" size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <JFXButton layoutX="667.0" layoutY="474.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#open_browser" prefHeight="71.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #517cc0; -fx-background-radius: 5px;" text="Browse" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="189.0" layoutY="621.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #c0c0c0; -fx-background-radius: 5px; -fx-border-color: #222ca1; -fx-border-radius: 5px;" text="Encrypt" textFill="#0c0cbf">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="616.0" layoutY="621.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #c0c0c0; -fx-background-radius: 5px; -fx-border-color: #222ca1; -fx-border-radius: 5px;" text="Decrypt" textFill="#0c0cbf">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="769.0" layoutY="390.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #c0c0c0; -fx-background-radius: 5px; -fx-border-color: #222ca1; -fx-border-radius: 5px;" text="Select" textFill="#0c0cbf">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="392.0" layoutY="37.0" text="URL List" textFill="#6e6767">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Bold" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
