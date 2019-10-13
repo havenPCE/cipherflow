@@ -35,7 +35,7 @@ public class DashboardController implements Initializable {
     @FXML
     public TableColumn<EFile, String> encDate;
     @FXML
-    public Button decryptTableButton;
+    public Button selectFromTableButton;
     @FXML
     public TextField fileUrlField;
     private CipherBean cipherBean;
@@ -54,19 +54,26 @@ public class DashboardController implements Initializable {
 
     public void decryptSelectionFromTable(ActionEvent actionEvent) {
         List<EFile> selectedFiles = encryptionTable.getSelectionModel().getSelectedItems();
-        selectedFiles.forEach(item -> {
-            try {
-                File file = new File(item.getFilePath().concat(".enc"));
-                if (file.exists())
-                    cipherBean.decrypt(new File(item.getFilePath()));
-                else
-                    showAlert(item.getFilePath().substring(item.getFilePath().lastIndexOf("/") + 1), "File not present in folder");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        observableList.removeAll(selectedFiles);
+        StringBuilder stringBuilder = new StringBuilder();
+        if(selectedFiles!=null) {
+            selectedFiles.forEach(item -> {
+                try {
+                    File file = new File(item.getFilePath().concat(".enc"));
+                    if (file.exists()) {
+                        //cipherBean.decrypt(new File(item.getFilePath()));
+                        stringBuilder.append(file).append(",");
+                        fileUrlField.setText(stringBuilder.substring(0, stringBuilder.length() - 1));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        else
+            showAlert("select files", "select files from table");
+
     }
+
 
     public void browseFiles(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
