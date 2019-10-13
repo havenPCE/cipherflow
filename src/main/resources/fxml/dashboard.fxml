@@ -31,7 +31,7 @@
             <ColorAdjust contrast="0.07"/>
         </effect>
     </TableView>
-    <Button id="selectButton" fx:id="decryptTableButton" layoutX="530.0" layoutY="225.0" mnemonicParsing="false"
+    <Button id="selectButton" fx:id="selectFromTableButton" layoutX="530.0" layoutY="225.0" mnemonicParsing="false"
             onAction="#decryptSelectionFromTable" prefHeight="32.0" prefWidth="211.0" stylesheets="@../styles/main.css"
             text="DECRYPT SELECTED FILES">
         <font>
