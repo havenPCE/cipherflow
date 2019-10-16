@@ -1,6 +1,6 @@
 package controller;
 
-import bean.Cipherbean;
+import bean.CipherBean;
 import bean.UserBean;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.EFileList;
+import model.SavedFileList;
 import model.User;
 import service.UserService;
 import service.UserServiceImplimentation;
@@ -57,13 +57,12 @@ public class RegistrationController implements Initializable {
     private Label passwordWarning;
 
 
-
     private StageManager stageManager;
     private User user;
     private UserPreferences userPreferences;
     private ListPreferences listPreferences;
     private UserBean userBean;
-    private Cipherbean cipherbean;
+    private CipherBean cipherbean;
     private UserService userService;
 
 
@@ -73,7 +72,7 @@ public class RegistrationController implements Initializable {
         userPreferences = UserPreferences.INSTANCE;
         listPreferences = ListPreferences.INSTANCE;
         userBean = UserBean.INSTANCE;
-        cipherbean = Cipherbean.INSTANCE;
+        cipherbean = CipherBean.INSTANCE;
         user = new User();
         userService = new UserServiceImplimentation();
 
@@ -189,18 +188,18 @@ public class RegistrationController implements Initializable {
     }
 
     private boolean validateInputs() {
-        boolean result = false;
+        boolean result;
         if (emptyValidation()) {
             return false;
         } else if (inputValidation()) {
             return false;
         } else {
-              if (!cpassword.getText().equals(password.getText())) {
-                    JOptionPane.showMessageDialog(null, " Password not matched ");
-                    return false;
-                } else
-                    result = true;
-            }
+            if (!cpassword.getText().equals(password.getText())) {
+                JOptionPane.showMessageDialog(null, " Password not matched ");
+                return false;
+            } else
+                result = true;
+        }
 
         return result;
     }
@@ -210,9 +209,9 @@ public class RegistrationController implements Initializable {
         user.setFirstName(firstname.getText());
         user.setLastName(lastname.getText());
         user.setEmail(email.getText());
-        user.setSecretKey(GeneratorClass.GenerateKey());
-        user.setIvKey(GeneratorClass.GenerateIV());
-        user.setSalt(GeneratorClass.GenerateSalt());
+        user.setSecretKey(GeneratorClass.generate());
+        user.setIvKey(GeneratorClass.generate());
+        user.setSalt(GeneratorClass.generate());
         cipherbean.setParameters(user.getSecretKey(), user.getIvKey(), user.getSalt());
         user.setPassword(cipherbean.getSecurePassword(password.getText()));
     }
@@ -223,9 +222,9 @@ public class RegistrationController implements Initializable {
         userBean.setLastName(user.getLastName());
         userBean.setEmail(user.getEmail());
         userPreferences.setUserID(user.getUserId());
-        EFileList eFileList = listPreferences.getList();
+        SavedFileList eFileList = listPreferences.getList();
         if (eFileList == null) {
-            userBean.setFileList(new EFileList());
+            userBean.setFileList(new SavedFileList());
         } else
             userBean.setFileList(eFileList);
 
