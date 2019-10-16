@@ -40,12 +40,12 @@ public class ProfileController implements Initializable {
     private StringProperty emailProperty;
 
     public void changeName(ActionEvent actionEvent) {
-        String result = showDialog("Full Name", "[A-Za-z]+\\s+[A-Za-z]+");
+        String result = showDialog("Full Name", "[A-Za-z]+\\s{1}[A-Za-z]+");
         if (result != null) {
             if (result.equals("$$invalid$$")) showAlert();
             else {
-                User user = userService.getUser(userBean.getUserID());
                 nameProperty.set(result);
+                User user = userService.getUser(userBean.getUserID());
                 String[] subName = result.split(" ");
                 userBean.setFirstName(subName[0]);
                 userBean.setLastName(subName[1]);
@@ -71,10 +71,11 @@ public class ProfileController implements Initializable {
     public void changeEmail(ActionEvent actionEvent) {
         String result = showDialog("Email", "[^@]+@[^\\.]+\\..+");
         if (result != null) {
-            if (result.equals("$$invalid$$")) showAlert();
+            if (result.equals("$$invalid$$"))
+                showAlert();
             else {
-                User user = userService.getUser(userBean.getUserID());
                 emailProperty.set(result);
+                User user = userService.getUser(userBean.getUserID());
                 userBean.setEmail(result);
                 user.setEmail(result);
                 userService.updateUser(user);
@@ -91,9 +92,10 @@ public class ProfileController implements Initializable {
         Optional input = dialog.showAndWait();
 
         if (input.isPresent()) {
-            if (patternValidation(input.toString(), pattern)) {
+            String text = (String) input.get();
+            if (patternValidation(text, pattern)) {
                 return "$$invalid$$";
-            } else return (String) input.get();
+            } else return text;
         } else return null;
     }
 
