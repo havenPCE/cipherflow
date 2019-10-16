@@ -4,10 +4,8 @@ import bean.Cipherbean;
 import bean.UserBean;
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,8 +27,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoginController implements Initializable {
 
@@ -42,9 +38,9 @@ public class LoginController implements Initializable {
     @FXML
     public  PasswordField password;
     @FXML
-    public JFXCheckBox rememberBox;
+    private JFXCheckBox rememberBox;
 
-    Alert alert = new Alert(Alert.AlertType.WARNING);
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
 
     private StageManager stageManager;
@@ -88,11 +84,11 @@ public class LoginController implements Initializable {
                 setUserInfo(remember);
                 stageManager.switchScene(FXMLView.REGISTRATION);
             }
-
         }
 
     }
-    public boolean emptyValidation(String username,String password)
+
+    private boolean emptyValidation(String username, String password)
     {
         if (username.equals("") || password.equals("") ) {
             JOptionPane.showMessageDialog(null, "Above fields can't be left blank ");
