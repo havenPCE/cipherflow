@@ -60,14 +60,14 @@ public class DashboardController implements Initializable {
                 try {
                     File file = new File(item.getFilePath().concat(".enc"));
                     if (file.exists()) {
-                        //cipherBean.decrypt(new File(item.getFilePath()));
-                        stringBuilder.append(file).append(",");
-                        fileUrlField.setText(stringBuilder.substring(0, stringBuilder.length() - 1));
+                        cipherBean.decrypt(new File(item.getFilePath()));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
+            observableList.removeAll(selectedFiles);
+            fileUrlField.clear();
         }
         else
             showAlert("select files", "select files from table");
@@ -105,6 +105,7 @@ public class DashboardController implements Initializable {
                 } else showAlert(path.substring(path.lastIndexOf("/") + 1), "File is not encrypted");
             }
             observableList.removeAll(selectedFiles);
+            fileUrlField.clear();
         } else showAlert("invalid url input", "Please Enter Valid File Path!");
     }
 
@@ -115,20 +116,20 @@ public class DashboardController implements Initializable {
             new ArrayList<>(observableList).forEach(item -> observableUrl.add(item.getFilePath()));
             for (String path : urlList) {
                 if (path.substring(path.length() - 4).equals(".enc")) {
-                    int idx = path.lastIndexOf("/") + 1;
+                    int idx = path.lastIndexOf("\\") + 1;
                     if (idx < path.length())
                         showAlert(path.substring(idx), "the file is already encrypted!");
                 } else if (!observableUrl.contains(path)) {
                     cipherBean.encrypt(new File(path));
                     addFileToEncryptionList(path);
                 }
+                fileUrlField.clear();
             }
         } else showAlert("invalid url input", "Please Enter Valid File Path!");
     }
 
     private void addFileToEncryptionList(String path) {
-        File file = new File(path);
-        observableList.add(new EFile(file.getAbsolutePath(), new Date(System.currentTimeMillis())));
+        observableList.add(new EFile(path, new Date(System.currentTimeMillis())));
     }
 
     private void removeFileFromEncryptionList(String path) {
