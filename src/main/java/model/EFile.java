@@ -15,7 +15,7 @@ public class EFile {
     private StringProperty lastEncrypted;
 
     public EFile(String filePath, Date lastEncrypted) {
-        int idx = filePath.lastIndexOf("/") + 1;
+        int idx = filePath.lastIndexOf("\\") + 1;
         if (idx < filePath.length()) {
             this.fileName = new SimpleStringProperty(filePath.substring(idx));
         } else this.fileName = new SimpleStringProperty("");

@@ -14,7 +14,7 @@ public class SavedFile implements Serializable {
     private Date savedLastEncrypted;
 
     public SavedFile(String savedFilePath, String savedLastEncrypted) throws ParseException {
-        int idx = savedFilePath.lastIndexOf("/") + 1;
+        int idx = savedFilePath.lastIndexOf("\\") + 1;
         if (idx < savedFilePath.length()) {
             this.savedFileName = savedFilePath.substring(idx);
         } else this.savedFileName = "";
