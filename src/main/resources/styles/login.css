@@ -17,7 +17,7 @@
 }
 .defaultInput {
 -fx-background-color:#FBFBFB;
--fx-border-color:rgba(0,0,0,0.8);
+-fx-border-color:#DDDDDD;
 -fx-padding:5px;
 }
 .defaultInput:focused {
@@ -33,7 +33,7 @@
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
 }
-#signInbutton:hover {
+#signInButton:hover {
     -fx-scale-y: 1.1;
 }
 
@@ -43,4 +43,34 @@
 
 #minButton:pressed {
     -fx-font-size:12;
+}
+
+#confirmButton {
+-fx-background-color:#0A6439;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#confirmButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+#resetButton {
+-fx-background-color:#410B0B;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#resetButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+#proceedButton {
+-fx-background-color:#C66B00;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#proceedButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
 }

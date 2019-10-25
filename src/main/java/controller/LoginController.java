@@ -147,4 +147,8 @@ public class LoginController implements Initializable {
         passwarning.setText("");
         loginwarning.setText("");
     }
+
+    public void gotoReset(ActionEvent actionEvent) throws IOException {
+        stageManager.switchScene(FXMLView.RESET);
+    }
 }
