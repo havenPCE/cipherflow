@@ -67,6 +67,7 @@ public class ResetController implements Initializable {
     public void resetID(ActionEvent actionEvent) {
         if (content.isVisible()) {
             uidField.setEditable(true);
+            uidField.clear();
             content.setVisible(false);
         }
     }

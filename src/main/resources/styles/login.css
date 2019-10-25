@@ -1,27 +1,28 @@
 
+.signupButton {
+-fx-background-color:#FAFAFA;
+-fx-border-color:rgba(0,0,0,0.6);
+}
+.signupButton:pressed {
+-fx-scale-x: 0.9;
+-fx-scale-y: 0.9;
+}
+.signupButton:hover {
+-fx-background-color:#5AA61E;
+-fx-border-color:transparent;
+-fx-text-fill:#Ffffff;
+}
 .defaultButton {
 -fx-background-color:#f8f8f8;
 }
 .defaultInput {
--fx-background-color:#FBFBFB;
--fx-border-color:rgba(0,0,0,0.8);
+-fx-background-color:#FAFAFA;
+-fx-border-color:#CCCCCC;
 -fx-padding:5px;
 }
 .defaultInput:focused {
 -fx-faint-focus-color:transparent;
 -fx-focus-color:rgba(18, 79, 27,0.3);
-}
-#registerButton {
--fx-border-color:rgba(0,0,0,0.8);
-}
-#registerButton:pressed {
--fx-scale-x: 0.9;
--fx-scale-y: 0.9;
-}
-#registerButton:hover {
--fx-background-color:#5AA61E;
--fx-border-color:transparent;
--fx-text-fill:#Ffffff;
 }
 #signInButton {
 -fx-background-color:#2E2D2D;
@@ -32,7 +33,7 @@
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
 }
-#signInbutton:hover {
+#signInButton:hover {
     -fx-scale-y: 1.1;
 }
 
@@ -42,4 +43,34 @@
 
 #minButton:pressed {
     -fx-font-size:12;
+}
+
+#confirmButton {
+-fx-background-color:#0A6439;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#confirmButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+#resetButton {
+-fx-background-color:#410B0B;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#resetButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+#proceedButton {
+-fx-background-color:#C66B00;
+-fx-text-fill:#FFFFFF;
+-fx-background-radius:0px;
+}
+#proceedButton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
 }
