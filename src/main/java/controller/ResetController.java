@@ -1,6 +1,7 @@
 package controller;
 
 import bean.CipherBean;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,14 +46,13 @@ public class ResetController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         stageManager = StageManager.INSTANCE;
         cipherBean = CipherBean.INSTANCE;
-
+        userService = new UserServiceImplimentation();
     }
 
     public void confirmID(ActionEvent actionEvent) throws NoSuchPaddingException, NoSuchAlgorithmException {
         if (patternValidation(uidField.getText(), "[A-Za-z0-9]+")) {
             showAlert("Invalid UID", "The id may contain only letters and numbers!");
         } else {
-            userService = new UserServiceImplimentation();
             user = userService.getUser(uidField.getText());
             if (user == null) {
                 showAlert("User not found", "the uid entered is not registered!");
@@ -74,6 +74,7 @@ public class ResetController implements Initializable {
     public void proceed(ActionEvent actionEvent) throws IOException {
         if (checkPasswords(passField.getText(), cPassField.getText())) {
             user.setPassword(cipherBean.getSecurePassword(passField.getText()));
+            userService.updateUser(user);
             showAlert("Password set", "new Password has been set");
             stageManager.switchScene(FXMLView.LOGIN);
         }
@@ -98,5 +99,13 @@ public class ResetController implements Initializable {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void closeWindow(ActionEvent actionEvent) {
+        Platform.exit();
+    }
+
+    public void minimizeWindow(ActionEvent actionEvent) {
+        stageManager.minimize();
     }
 }

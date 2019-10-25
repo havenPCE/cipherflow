@@ -8,8 +8,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.ResetController">
-    <Text fill="#534d4d" layoutX="334.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0"
-          text="Reset Password">
+    <Text fill="#534d4d" layoutX="334.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reset Password">
         <font>
             <Font name="Segoe UI Bold" size="18.0"/>
         </font>
@@ -34,8 +33,7 @@
     </Button>
     <AnchorPane fx:id="content" layoutX="89.0" layoutY="170.0" prefHeight="277.0" prefWidth="622.0"
                 style="-fx-border-color: #DDDDDD;" visible="false">
-        <Text fill="#4b4b4b" layoutX="263.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="New Password">
+        <Text fill="#4b4b4b" layoutX="263.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Password">
             <font>
                 <Font name="Segoe UI Bold" size="14.0"/>
             </font>
@@ -74,5 +72,19 @@
                 <Image url="@../images/arrow-left.jpg"/>
             </ImageView>
         </graphic>
+    </Button>
+    <Button id="minButton" layoutX="726.0" layoutY="14.0" mnemonicParsing="false"
+            onAction="#minimizeWindow" style="-fx-background-color: #FFFFFF;" styleClass="defaultButton"
+            stylesheets="@../styles/login.css" text="-" textAlignment="CENTER">
+        <font>
+            <Font name="Segoe UI Bold" size="14.0"/>
+        </font>
+    </Button>
+    <Button id="closeButton" layoutX="759.0" layoutY="14.0" mnemonicParsing="false"
+            onAction="#closeWindow" prefHeight="28.0" prefWidth="15.0" style="-fx-background-color: #FFFFFF;"
+            styleClass="defaultButton" stylesheets="@../styles/login.css" text="X" textAlignment="CENTER">
+        <font>
+            <Font name="Segoe UI Bold" size="14.0"/>
+        </font>
     </Button>
 </AnchorPane>

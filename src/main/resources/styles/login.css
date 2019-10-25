@@ -1,7 +1,7 @@
 
 .signupButton {
--fx-background-color:#FFFFFF;
--fx-border-color:rgba(0,0,0,0.8);
+-fx-background-color:#FAFAFA;
+-fx-border-color:rgba(0,0,0,0.6);
 }
 .signupButton:pressed {
 -fx-scale-x: 0.9;
@@ -16,8 +16,8 @@
 -fx-background-color:#f8f8f8;
 }
 .defaultInput {
--fx-background-color:#FBFBFB;
--fx-border-color:#DDDDDD;
+-fx-background-color:#FAFAFA;
+-fx-border-color:#CCCCCC;
 -fx-padding:5px;
 }
 .defaultInput:focused {
