@@ -87,6 +87,18 @@ public enum FXMLView {
         public String getFxmlFile() {
             return "fxml/learn.fxml";
         }
+    },
+
+    RESET {
+        @Override
+        public String getTitle() {
+            return "Reset Password";
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "fxml/reset.fxml";
+        }
     };
 
     //returns the title to display on screen
