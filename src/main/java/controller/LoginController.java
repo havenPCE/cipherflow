@@ -3,6 +3,7 @@ package controller;
 import bean.CipherBean;
 import bean.UserBean;
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -137,6 +138,10 @@ public class LoginController implements Initializable {
         if (savedList == null) {
             userBean.setFileList(new SavedFileList());
         } else userBean.setFileList(savedList);
+    }
+
+    public void gotoReset(ActionEvent actionEvent) throws IOException {
+        stageManager.switchScene(FXMLView.RESET);
     }
 }
 
