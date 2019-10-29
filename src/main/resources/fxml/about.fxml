@@ -1,13 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="450.0" prefWidth="740.0"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.AboutController">
-    <Text layoutX="316.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About Content">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+            prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AboutController">
+    <Label layoutX="11.0" prefHeight="57.0" prefWidth="551.0"
+           text="WE ARE FOUR GROUP MEMBERS PERSUING B.TECH LAST YEAR">
         <font>
-            <Font name="Segoe UI Bold" size="16.0"/>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
         </font>
-    </Text>
+    </Label>
+    <Label layoutX="11.0" layoutY="57.0" prefHeight="57.0" prefWidth="728.0"
+           text="AND MAKE THIS MINOR PROJECT FOR OUR  7TH SEMESTER  PROJECT SUBMISSION">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutY="133.0" prefHeight="57.0" prefWidth="740.0"
+           text="A BIG THANKS TO ALL OUR RESPECTED TEACHERS WHO HELP US FOR THIS  PROJECT">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
+    <Line endX="620.0" layoutX="120.0" layoutY="202.0" startX="-127.5"/>
+    <ImageView fitHeight="166.0" fitWidth="137.0" layoutX="29.0" layoutY="202.0" pickOnBounds="true">
+        <Image url="@../images/lock10.png"/>
+    </ImageView>
+    <ImageView fitHeight="166.0" fitWidth="137.0" layoutX="211.0" layoutY="202.0" pickOnBounds="true">
+        <Image url="@../images/lock7.png"/>
+    </ImageView>
+    <ImageView fitHeight="166.0" fitWidth="137.0" layoutX="400.0" layoutY="202.0" pickOnBounds="true">
+        <Image url="@../images/lock9.png"/>
+    </ImageView>
+    <ImageView fitHeight="166.0" fitWidth="137.0" layoutX="574.0" layoutY="202.0" pickOnBounds="true">
+        <Image url="@../images/lock8.png"/>
+    </ImageView>
+    <Label alignment="CENTER" layoutX="3.0" layoutY="370.0" prefHeight="40.0" prefWidth="190.0" text="Gopesh Patra">s
+        <font>
+            <Font name="Lucida Sans Unicode" size="24.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="9.0" layoutY="407.0" prefHeight="29.0" prefWidth="177.0" text="Database ">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="173.0" layoutY="370.0" prefHeight="40.0" prefWidth="213.0" text="Khushboo">
+        <font>
+            <Font name="Lucida Sans Unicode" size="24.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="359.0" layoutY="370.0" prefHeight="40.0" prefWidth="220.0"
+           text="Sangeeta Sharma">
+        <font>
+            <Font name="Lucida Sans Unicode" size="24.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="575.0" layoutY="370.0" prefHeight="40.0" prefWidth="177.0" text="Shyam Sahoo">
+        <font>
+            <Font name="Lucida Sans Unicode" size="24.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="173.0" layoutY="407.0" prefHeight="29.0" prefWidth="213.0"
+           text="UI &amp; Controllers">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="380.0" layoutY="407.0" prefHeight="29.0" prefWidth="177.0" text="Coding">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="562.0" layoutY="407.0" prefHeight="29.0" prefWidth="177.0" text="Coding">
+        <font>
+            <Font name="Lucida Sans Unicode" size="18.0"/>
+        </font>
+    </Label>
 </AnchorPane>

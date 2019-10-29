@@ -101,7 +101,7 @@ public class RegistrationController implements Initializable {
 
     public void username_keyreleased(KeyEvent keyEvent) {
         if (patternValidation(username.getText(), "[A-z a-z 0-9]+"))
-            usernameWarning.setText("only letters & numbers are allowed");
+            usernameWarning.setText(" letters & numbers are allowed");
         else
             usernameWarning.setText(null);
     }

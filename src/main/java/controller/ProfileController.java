@@ -91,9 +91,9 @@ public class ProfileController implements Initializable {
         Optional input = dialog.showAndWait();
 
         if (input.isPresent()) {
-            if (patternValidation(input.toString(), pattern)) {
+            if (patternValidation(input.get().toString(), pattern)) {
                 return "$$invalid$$";
-            } else return (String) input.get();
+            } else return input.get().toString();
         } else return null;
     }
 
